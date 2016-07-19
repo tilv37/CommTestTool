@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommTestTool", "CommTestTool\CommTestTool.csproj", "{A157DCF3-7ABE-4B89-B60C-68067CB31F1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TJSYXY.Communication", "TJSYXY.Communication\TJSYXY.Communication.csproj", "{F2B5C19C-218D-48E0-9BA1-32673F1352B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A157DCF3-7ABE-4B89-B60C-68067CB31F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A157DCF3-7ABE-4B89-B60C-68067CB31F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A157DCF3-7ABE-4B89-B60C-68067CB31F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A157DCF3-7ABE-4B89-B60C-68067CB31F1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2B5C19C-218D-48E0-9BA1-32673F1352B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2B5C19C-218D-48E0-9BA1-32673F1352B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2B5C19C-218D-48E0-9BA1-32673F1352B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2B5C19C-218D-48E0-9BA1-32673F1352B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
