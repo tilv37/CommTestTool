@@ -336,6 +336,7 @@ namespace CommTestTool
 
             if (color == Color.Blue)
             {
+
                 LogHelper.ShowInfo(nowDate+" Recv:"+tempData);
             }
             else if (color == Color.LimeGreen)
