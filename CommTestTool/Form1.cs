@@ -333,6 +333,17 @@ namespace CommTestTool
             StringBuilder sb = new StringBuilder();
             string tempData = CommonFucntion.bytesToHexString(bytes, bytes.Length);
             string nowDate = string.Format("[{0}]", dateTime.ToString("yyyy-MM-dd HH:mm:ss:fff"));
+
+            if (color == Color.Blue)
+            {
+                LogHelper.ShowInfo(nowDate+" Recv:"+tempData);
+            }
+            else if (color == Color.LimeGreen)
+            {
+                LogHelper.ShowInfo(nowDate + " Send:" + tempData);
+            }
+
+
             if (ckbShowTime.Checked)
             {
                 richTextBox2.SelectionStart = richTextBox2.TextLength;
