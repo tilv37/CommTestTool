@@ -39,11 +39,9 @@ namespace TJSYXY.Communication
             ZMessage temp = new ZMessage();
             MemoryStream stream = new MemoryStream(buffer);
             BinaryReader reader = new BinaryReader(stream);
-            temp.head = reader.ReadByte();
             temp.length = buffer.Count();
             temp.content = reader.ReadBytes(temp.length);
             reader.Close();
-            Remove(temp.length);
             msg = temp;
             return true;
         }

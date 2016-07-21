@@ -135,10 +135,9 @@ namespace TJSYXY.Communication.UDP
         /// <param name="remotePort">远程端口</param>
         public void SendTo(Msg msg, byte[] data,string remoteIP, int remotePort)
         {
-            byte[] buffer2send = new byte[1 + data.Length];  // 1  + data
+            byte[] buffer2send = new byte[data.Length];  // 1  + data
             BinaryWriter sWriter = new BinaryWriter(new MemoryStream(buffer2send));
 
-            sWriter.Write((byte)msg);
             sWriter.Write(data);
             sWriter.Close();
 

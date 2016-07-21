@@ -115,9 +115,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Libs\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TJSYXY.Communication\TJSYXY.Communication.csproj">
       <Project>{f2b5c19c-218d-48e0-9ba1-32673f1352b7}</Project>

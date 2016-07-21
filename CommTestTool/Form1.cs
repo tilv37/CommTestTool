@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Windows.Forms;
 using CommTestTool.Common;
 using CommTestTool.Model;
@@ -30,6 +31,7 @@ namespace CommTestTool
         private SerialClient _serialClient = null;
         private LocalSettings _localSettings;
         private static bool initialFlag = false;
+        private System.Timers.Timer timeSend;
 
         private static int _richText2Rows = 0;
         public Form1()
@@ -73,6 +75,10 @@ namespace CommTestTool
             cbDataFlag.DataSource = fmInit.GetDataFlag();
             cbStopFlag.DataSource = fmInit.GetStopFlag();
             ShowMessageHandler += ShowDebug;
+
+            timeSend = new System.Timers.Timer();
+            timeSend.AutoReset = true;
+            timeSend.Elapsed += new ElapsedEventHandler(doTimer);
         }
 
         private void RadioButtonInit()
@@ -292,6 +298,11 @@ namespace CommTestTool
 
         private void button3_Click(object sender, EventArgs e)
         {
+            SendBytes();
+        }
+
+        private void SendBytes()
+        {
             string tempData = richTextBox1.Text.Trim();
             byte[] bytes;
             if (rbDisplayAsc.Checked)
@@ -302,19 +313,18 @@ namespace CommTestTool
             {
                 bytes = CommonFucntion.StringToBytes(tempData);
             }
-            
+
 
             if (bytes.Count() != 0)
             {
                 if (_localSettings.NetType.Contains("Tcp"))
                 {
                     _tcpClientManager.Send(Msg.Zmsg1, bytes);
-
                 }
-                else if(_localSettings.NetType.Contains("Udp"))
+                else if (_localSettings.NetType.Contains("Udp"))
                 {
-                    _udpClientManager.SendTo(Msg.Default, bytes, _localSettings.IpAddress.Address.ToString(), _localSettings.IpAddress.Port);
-
+                    _udpClientManager.SendTo(Msg.Default, bytes, _localSettings.IpAddress.Address.ToString(),
+                        _localSettings.IpAddress.Port);
                 }
                 else
                 {
@@ -334,16 +344,6 @@ namespace CommTestTool
             string tempData = CommonFucntion.bytesToHexString(bytes, bytes.Length);
             string nowDate = string.Format("[{0}]", dateTime.ToString("yyyy-MM-dd HH:mm:ss:fff"));
 
-            if (color == Color.Blue)
-            {
-                LogHelper.ShowInfo(nowDate+" Recv:"+tempData);
-            }
-            else if (color == Color.LimeGreen)
-            {
-                LogHelper.ShowInfo(nowDate + " Send:" + tempData);
-            }
-
-
             if (ckbShowTime.Checked)
             {
                 richTextBox2.SelectionStart = richTextBox2.TextLength;
@@ -354,6 +354,16 @@ namespace CommTestTool
             }
             sb.Append(" "+tempData);
             sb.Append(string.Format("({0} bytes)", bytes.Count()));
+
+            if (color == Color.Blue)
+            {
+                LogHelper.ShowInfo(nowDate + " Recv:" + tempData+ string.Format("({0} bytes)", bytes.Count()));
+            }
+            else if (color == Color.LimeGreen)
+            {
+                LogHelper.ShowInfo(nowDate + " Send:" + tempData + string.Format("({0} bytes)", bytes.Count()));
+            }
+
             if (ckbNewLine.Checked)
             {
                 sb.Append("\r");
@@ -416,6 +426,45 @@ namespace CommTestTool
             DateTime tm = args.Time;
             byte[] bytes = args.Data;
             this.Invoke(ShowMessageHandler, Color.Blue, bytes, tm);
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!initialFlag)
+            {
+                return;
+            }
+            int repeatIntval;
+            if (checkBox5.Checked)
+            {
+                if (int.TryParse(txtRepeatInteval.Text.Trim(), out repeatIntval))
+                {
+                    timeSend.Interval = repeatIntval;
+                    timeSend.Enabled = true;
+                    button3.Enabled = false;
+                }
+            }
+            else
+            {
+                button3.Enabled = true;
+                timeSend.Enabled = false;
+            }
+
+        }
+
+        delegate void MyInvokeHandler();
+        private void doTimer(object sender, ElapsedEventArgs e)
+        {
+            this.Invoke(new MyInvokeHandler(SendBytes));
+        }
+
+        private void txtRepeatInteval_TextChanged(object sender, EventArgs e)
+        {
+            int repeatIntval;
+            if (int.TryParse(txtRepeatInteval.Text.Trim(), out repeatIntval))
+            {
+                timeSend.Interval = repeatIntval;
+            }
         }
     }
 }

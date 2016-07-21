@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkDTR = new System.Windows.Forms.CheckBox();
+            this.chkRTS = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.cbStopFlag = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,14 +62,12 @@
             this.rbInpueAsc = new System.Windows.Forms.RadioButton();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtRepeatInteval = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.chkRTS = new System.Windows.Forms.CheckBox();
-            this.chkDTR = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -100,15 +100,39 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(893, 86);
+            this.groupBox1.Size = new System.Drawing.Size(916, 86);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // chkDTR
+            // 
+            this.chkDTR.AutoSize = true;
+            this.chkDTR.Checked = true;
+            this.chkDTR.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDTR.Location = new System.Drawing.Point(709, 51);
+            this.chkDTR.Name = "chkDTR";
+            this.chkDTR.Size = new System.Drawing.Size(53, 19);
+            this.chkDTR.TabIndex = 15;
+            this.chkDTR.Text = "DTR";
+            this.chkDTR.UseVisualStyleBackColor = true;
+            // 
+            // chkRTS
+            // 
+            this.chkRTS.AutoSize = true;
+            this.chkRTS.Checked = true;
+            this.chkRTS.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRTS.Location = new System.Drawing.Point(640, 51);
+            this.chkRTS.Name = "chkRTS";
+            this.chkRTS.Size = new System.Drawing.Size(53, 19);
+            this.chkRTS.TabIndex = 14;
+            this.chkRTS.Text = "RTS";
+            this.chkRTS.UseVisualStyleBackColor = true;
             // 
             // linkLabel1
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(734, 21);
+            this.linkLabel1.Location = new System.Drawing.Point(757, 21);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(37, 15);
             this.linkLabel1.TabIndex = 11;
@@ -191,7 +215,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(794, 17);
+            this.button1.Location = new System.Drawing.Point(817, 17);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 50);
             this.button1.TabIndex = 5;
@@ -266,7 +290,7 @@
             this.groupBox2.Controls.Add(this.panel1);
             this.groupBox2.Location = new System.Drawing.Point(12, 92);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(893, 85);
+            this.groupBox2.Size = new System.Drawing.Size(916, 85);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -283,7 +307,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(793, 25);
+            this.button2.Location = new System.Drawing.Point(816, 25);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 43);
             this.button2.TabIndex = 10;
@@ -397,17 +421,18 @@
             // 
             this.checkBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(768, 87);
+            this.checkBox5.Location = new System.Drawing.Point(777, 87);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(59, 19);
             this.checkBox5.TabIndex = 11;
             this.checkBox5.Text = "重复";
             this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(793, 24);
+            this.button3.Location = new System.Drawing.Point(816, 24);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 51);
             this.button3.TabIndex = 12;
@@ -415,19 +440,21 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // textBox3
+            // txtRepeatInteval
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(827, 81);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(32, 25);
-            this.textBox3.TabIndex = 13;
+            this.txtRepeatInteval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRepeatInteval.Location = new System.Drawing.Point(832, 81);
+            this.txtRepeatInteval.Name = "txtRepeatInteval";
+            this.txtRepeatInteval.Size = new System.Drawing.Size(50, 25);
+            this.txtRepeatInteval.TabIndex = 13;
+            this.txtRepeatInteval.Text = "1000";
+            this.txtRepeatInteval.TextChanged += new System.EventHandler(this.txtRepeatInteval_TextChanged);
             // 
             // label8
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(865, 88);
+            this.label8.Location = new System.Drawing.Point(888, 88);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(23, 15);
             this.label8.TabIndex = 14;
@@ -440,11 +467,11 @@
             this.groupBox3.Controls.Add(this.richTextBox1);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.txtRepeatInteval);
             this.groupBox3.Controls.Add(this.checkBox5);
             this.groupBox3.Location = new System.Drawing.Point(12, 176);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(893, 131);
+            this.groupBox3.Size = new System.Drawing.Size(916, 131);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
             // 
@@ -455,7 +482,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(6, 20);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(756, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(765, 96);
             this.richTextBox1.TabIndex = 15;
             this.richTextBox1.Text = "";
             // 
@@ -467,7 +494,7 @@
             this.groupBox4.Controls.Add(this.richTextBox2);
             this.groupBox4.Location = new System.Drawing.Point(12, 314);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(893, 211);
+            this.groupBox4.Size = new System.Drawing.Size(916, 211);
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             // 
@@ -476,40 +503,16 @@
             this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox2.Location = new System.Drawing.Point(3, 21);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(887, 187);
+            this.richTextBox2.Size = new System.Drawing.Size(910, 187);
             this.richTextBox2.TabIndex = 0;
             this.richTextBox2.Text = "";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
-            // 
-            // chkRTS
-            // 
-            this.chkRTS.AutoSize = true;
-            this.chkRTS.Checked = true;
-            this.chkRTS.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRTS.Location = new System.Drawing.Point(640, 51);
-            this.chkRTS.Name = "chkRTS";
-            this.chkRTS.Size = new System.Drawing.Size(53, 19);
-            this.chkRTS.TabIndex = 14;
-            this.chkRTS.Text = "RTS";
-            this.chkRTS.UseVisualStyleBackColor = true;
-            // 
-            // chkDTR
-            // 
-            this.chkDTR.AutoSize = true;
-            this.chkDTR.Checked = true;
-            this.chkDTR.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDTR.Location = new System.Drawing.Point(709, 51);
-            this.chkDTR.Name = "chkDTR";
-            this.chkDTR.Size = new System.Drawing.Size(53, 19);
-            this.chkDTR.TabIndex = 15;
-            this.chkDTR.Text = "DTR";
-            this.chkDTR.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 535);
+            this.ClientSize = new System.Drawing.Size(937, 535);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -564,7 +567,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtRepeatInteval;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RichTextBox richTextBox1;
