@@ -42,6 +42,7 @@ namespace TJSYXY.Communication
             temp.length = buffer.Count();
             temp.content = reader.ReadBytes(temp.length);
             reader.Close();
+            Remove(temp.length);
             msg = temp;
             return true;
         }

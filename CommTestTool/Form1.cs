@@ -341,7 +341,7 @@ namespace CommTestTool
         private void ShowDebug(Color color, byte[] bytes,DateTime dateTime)
         {
             StringBuilder sb = new StringBuilder();
-            string tempData = CommonFucntion.bytesToHexString(bytes, bytes.Length);
+            string tempData = rbDisplayAsc.Checked ? Encoding.ASCII.GetString(bytes) : CommonFucntion.bytesToHexString(bytes, bytes.Length);
             string nowDate = string.Format("[{0}]", dateTime.ToString("yyyy-MM-dd HH:mm:ss:fff"));
 
             if (ckbShowTime.Checked)
