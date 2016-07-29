@@ -303,6 +303,12 @@ namespace CommTestTool
 
         private void SendBytes()
         {
+            if (!initialFlag)
+            {
+                MessageBox.Show("端口未被打开，请先确保通信连接");
+                return;
+            }
+
             string tempData = richTextBox1.Text.Trim();
             byte[] bytes;
             if (rbDisplayAsc.Checked)
