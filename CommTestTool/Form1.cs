@@ -22,6 +22,10 @@ namespace CommTestTool
         private delegate void SendMessageDelegate(Msg msg,byte[] bytes,DateTime dateTime);
         private static SendMessageDelegate SendMessageHandler;
 
+        private delegate void DoClose();
+
+        private DoClose doCloseHandler;
+
         private delegate void ShowMessageDelegate(Color color,byte[] bytes, DateTime dateTime);
         private static ShowMessageDelegate ShowMessageHandler;
 
@@ -75,10 +79,22 @@ namespace CommTestTool
             cbDataFlag.DataSource = fmInit.GetDataFlag();
             cbStopFlag.DataSource = fmInit.GetStopFlag();
             ShowMessageHandler += ShowDebug;
+            doCloseHandler += DisConnected;
 
             timeSend = new System.Timers.Timer();
             timeSend.AutoReset = true;
             timeSend.Elapsed += new ElapsedEventHandler(doTimer);
+        }
+
+        private void DisConnected()
+        {
+            ClosePort();
+            if (!initialFlag)
+            {
+                button1.Text = "打开端口";
+                EnableIpUI();
+                EnableSerialUI();
+            }
         }
 
         private void RadioButtonInit()
@@ -178,6 +194,7 @@ namespace CommTestTool
                     {
                         _tcpClientManager = new TCPClientManager("tcpClient");
                         _tcpClientManager.TCPMessageSended += new TCPMessageSendedEventHandler(DiplayMessageSend);
+                        _tcpClientManager.TCPServerDisconnected += new TCPServerDisconnectEventHandler(DoServerClose);
                         _tcpClientManager.TCPMessageReceived += new TCPMessageReceivedEventHandler(manager_TCPMessageReceived);
                     }
                     _tcpClientManager.Connect(_localSettings.IpAddress);
@@ -254,6 +271,12 @@ namespace CommTestTool
                 MessageBox.Show(exception.Message);
             }
 
+        }
+
+
+        private void DoServerClose()
+        {
+            this.Invoke(doCloseHandler);
         }
 
         private void ClosePort()

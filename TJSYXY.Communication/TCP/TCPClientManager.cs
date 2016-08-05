@@ -184,5 +184,17 @@ namespace TJSYXY.Communication.TCP
                 _tcpMessageSendedEventHandler -= value;
             }
         }
+
+        public event TCPServerDisconnectEventHandler TCPServerDisconnected
+        {
+            add
+            {
+                    TCPClient.TCPClients[_client_id].TCPServerDisconnect += value;
+            }
+            remove
+            {
+                TCPClient.TCPClients[_client_id].TCPServerDisconnect -= value;
+            }
+        }
     }
 }

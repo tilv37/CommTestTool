@@ -66,6 +66,8 @@ namespace TJSYXY.Communication.TCP
         /// 接收到服务器的消息时激发该事件
         /// </summary>
         public event TCPMessageReceivedEventHandler TCPMessageReceived;
+
+        public event TCPServerDisconnectEventHandler TCPServerDisconnect;
         /// <summary>
         /// 客户端连入服务器时激发该事件
         /// </summary>
@@ -199,6 +201,15 @@ namespace TJSYXY.Communication.TCP
             try
             {
                 int real_recv = end.Socket.EndReceive(ar);
+                if (real_recv == 0)
+                {
+                    DisConnect();
+                    if (TCPServerDisconnect != null)
+                    {
+                        TCPServerDisconnect.BeginInvoke(null, null);
+                    }
+                    return;
+                }
                 end.MStream.Write(end.Buffer, 0, real_recv); //写入消息缓冲区
                 //尝试读取一条完整消息
                 ZMessage msg;

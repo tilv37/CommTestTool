@@ -49,6 +49,9 @@ namespace TJSYXY.Communication.TCP
     /// <param name="args">消息参数</param>
     public delegate void TCPMessageReceivedEventHandler(string csID, TCPMessageReceivedEventArgs args);
 
+
+    public delegate void TCPServerDisconnectEventHandler();
+
     /// <summary>
     /// TCP通信时客户端连入事件参数
     /// </summary>
