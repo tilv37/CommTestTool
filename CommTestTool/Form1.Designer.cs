@@ -503,7 +503,7 @@
             this.groupBox4.Controls.Add(this.richTextBox2);
             this.groupBox4.Location = new System.Drawing.Point(12, 314);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(916, 211);
+            this.groupBox4.Size = new System.Drawing.Size(916, 242);
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             // 
@@ -513,7 +513,7 @@
             this.richTextBox2.Location = new System.Drawing.Point(3, 21);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(910, 187);
+            this.richTextBox2.Size = new System.Drawing.Size(910, 218);
             this.richTextBox2.TabIndex = 0;
             this.richTextBox2.Text = "";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
@@ -526,7 +526,7 @@
             this.sendNum,
             this.toolStripStatusLabel2,
             this.recvNum});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 510);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 559);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(937, 25);
             this.statusStrip1.TabIndex = 17;
@@ -572,7 +572,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(937, 535);
+            this.ClientSize = new System.Drawing.Size(937, 584);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
