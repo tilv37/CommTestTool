@@ -281,6 +281,11 @@ namespace CommTestTool
 
         private void ClosePort()
         {
+            if (timeSend.Enabled)
+            {
+                timeSend.Enabled = false;
+                checkBox5.Checked = false;
+            }
             if (_tcpClientManager!=null)
             {
                 _tcpClientManager.DisConnect();
@@ -386,10 +391,12 @@ namespace CommTestTool
 
             if (color == Color.Blue)
             {
+                recvNum.Text = ComCounter.RecvNum().ToString();
                 LogHelper.ShowInfo(nowDate + " Recv:" + tempData+ string.Format("({0} bytes)", bytes.Count()));
             }
             else if (color == Color.LimeGreen)
             {
+                sendNum.Text = ComCounter.SendNum().ToString();
                 LogHelper.ShowInfo(nowDate + " Send:" + tempData + string.Format("({0} bytes)", bytes.Count()));
             }
 
@@ -494,6 +501,13 @@ namespace CommTestTool
             {
                 timeSend.Interval = repeatIntval;
             }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ComCounter.ClearCounter();
+            recvNum.Text = "0";
+            sendNum.Text = "0";
         }
     }
 }

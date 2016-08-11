@@ -85,6 +85,7 @@
     <Compile Include="CheckSettingsForm.Designer.cs">
       <DependentUpon>CheckSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComCounter.cs" />
     <Compile Include="Common\CommonFucntion.cs" />
     <Compile Include="Common\FormInit.cs" />
     <Compile Include="Common\Loghelper.cs" />
