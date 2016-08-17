@@ -135,6 +135,7 @@ namespace TJSYXY.Communication.TCP
                 {
                     _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 }
+                _socket.IOControl(IOControlCode.KeepAliveValues, KeepAlive(1, 1000, 1000), null);
                 _socket.Connect(new IPEndPoint(IPAddress.Parse(ip), port));
                 Connected = true;
                 TCPEndPoint end = new TCPEndPoint();
@@ -162,6 +163,7 @@ namespace TJSYXY.Communication.TCP
                 {
                     _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 }
+                _socket.IOControl(IOControlCode.KeepAliveValues, KeepAlive(1, 1000, 1000), null);
                 _socket.Connect(remotEndPoint);
                 Connected = true;
                 TCPEndPoint end = new TCPEndPoint();
@@ -236,7 +238,15 @@ namespace TJSYXY.Communication.TCP
                     args.End = end;
                     args.Time = DateTime.Now;
                     TCPClientDisConnected(_client_id, args);
-                }     
+                }
+                else
+                {
+                    DisConnect();
+                    if (TCPServerDisconnect != null)
+                    {
+                        TCPServerDisconnect.BeginInvoke(null, null);
+                    }
+                }  
             }
         }
 
@@ -279,6 +289,15 @@ namespace TJSYXY.Communication.TCP
             sWriter.Close();
 
             _socket.BeginSend(buffer2send, 0, buffer2send.Length, SocketFlags.None, callback, _socket);  //异步
+        }
+
+        private byte[] KeepAlive(int onOff, int keepAliveTime, int keepAliveInterval)
+        {
+            byte[] buffer = new byte[12];
+            BitConverter.GetBytes(onOff).CopyTo(buffer, 0);
+            BitConverter.GetBytes(keepAliveTime).CopyTo(buffer, 4);
+            BitConverter.GetBytes(keepAliveInterval).CopyTo(buffer, 8);
+            return buffer;
         }
     }
 }

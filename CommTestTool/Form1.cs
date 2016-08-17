@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
 using CommTestTool.Common;
@@ -28,6 +29,9 @@ namespace CommTestTool
 
         private delegate void ShowMessageDelegate(Color color,byte[] bytes, DateTime dateTime);
         private static ShowMessageDelegate ShowMessageHandler;
+
+        //用来检查文件存在的委托
+        public delegate void SendFileDebugDelegate(List<byte[]> byeList);
 
         private TCPClientManager _tcpClientManager=null;
         private TCPServerManager _tcpServerManager = null;
@@ -367,6 +371,32 @@ namespace CommTestTool
             }
         }
 
+        private void SendBytes(byte[] bytes)
+        {
+            if (!initialFlag)
+            {
+                MessageBox.Show("端口未被打开，请先确保通信连接");
+                return;
+            }
+
+            if (bytes.Count() != 0)
+            {
+                if (_localSettings.NetType.Contains("Tcp"))
+                {
+                    _tcpClientManager.Send(Msg.Zmsg1, bytes);
+                }
+                else if (_localSettings.NetType.Contains("Udp"))
+                {
+                    _udpClientManager.SendTo(Msg.Default, bytes, _localSettings.IpAddress.Address.ToString(),
+                        _localSettings.IpAddress.Port);
+                }
+                else
+                {
+                    _serialClient.Send(bytes);
+                }
+            }
+        }
+
         private void DiplayMessageSend(byte[] bytes)
         {
             this.Invoke(ShowMessageHandler, Color.LimeGreen, bytes, DateTime.Now);
@@ -397,7 +427,7 @@ namespace CommTestTool
             else if (color == Color.LimeGreen)
             {
                 sendNum.Text = ComCounter.SendNum().ToString();
-                LogHelper.ShowInfo(nowDate + " Send:" + tempData + string.Format("({0} bytes)", bytes.Count()));
+                //LogHelper.ShowInfo(nowDate + " Send:" + tempData + string.Format("({0} bytes)", bytes.Count()));
             }
 
             if (ckbNewLine.Checked)
@@ -471,10 +501,13 @@ namespace CommTestTool
                 return;
             }
             int repeatIntval;
+            int timerTotal=0;
             if (checkBox5.Checked)
-            {
+            {          
+                int.TryParse(txtRepeatTimes.Text.Trim(), out timerTotal);
                 if (int.TryParse(txtRepeatInteval.Text.Trim(), out repeatIntval))
                 {
+                    ComCounter.SetTimerTotal(timerTotal);
                     timeSend.Interval = repeatIntval;
                     timeSend.Enabled = true;
                     button3.Enabled = false;
@@ -491,6 +524,15 @@ namespace CommTestTool
         delegate void MyInvokeHandler();
         private void doTimer(object sender, ElapsedEventArgs e)
         {
+            if (ComCounter.isTimerNeedDone())
+            {
+                this.Invoke(new MyInvokeHandler(() =>
+                {
+                    button3.Enabled = true;
+                    timeSend.Enabled = false;
+                    checkBox5.Checked = false;
+                }));
+            }
             this.Invoke(new MyInvokeHandler(SendBytes));
         }
 
@@ -509,5 +551,32 @@ namespace CommTestTool
             recvNum.Text = "0";
             sendNum.Text = "0";
         }
+
+        private void 文件追捕ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<byte[]> f=new List<byte[]>();
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Multiselect = true;
+            fileDialog.Title = "请选择文件";
+            fileDialog.Filter = "所有文件(*.*)|*.*";
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string file = fileDialog.FileName;
+                f = FileOprate.GeByteses(file);
+                SendFileDebugDelegate dl = SendFileDebug;
+                dl.BeginInvoke(f, null, dl);
+            }
+           
+        }
+
+        private void SendFileDebug(List<byte[]> byteses)
+        {
+            foreach (byte[] bytes in byteses)
+            {
+                SendBytes(bytes);
+                Thread.Sleep(100);
+            }
+        }
+
     }
 }

@@ -49,6 +49,7 @@
             this.cbCom = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.ckbOnlyRecv = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
@@ -66,6 +67,8 @@
             this.txtRepeatInteval = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtRepeatTimes = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
@@ -74,7 +77,8 @@
             this.sendNum = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.recvNum = new System.Windows.Forms.ToolStripStatusLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.文件追捕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -108,7 +112,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(916, 86);
+            this.groupBox1.Size = new System.Drawing.Size(935, 86);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -140,7 +144,7 @@
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(757, 21);
+            this.linkLabel1.Location = new System.Drawing.Point(776, 21);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(37, 15);
             this.linkLabel1.TabIndex = 11;
@@ -223,7 +227,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(817, 17);
+            this.button1.Location = new System.Drawing.Point(836, 17);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 50);
             this.button1.TabIndex = 5;
@@ -299,9 +303,21 @@
             this.groupBox2.Controls.Add(this.panel1);
             this.groupBox2.Location = new System.Drawing.Point(12, 92);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(916, 85);
+            this.groupBox2.Size = new System.Drawing.Size(935, 85);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(762, 26);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(67, 15);
+            this.linkLabel2.TabIndex = 12;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "清空计数";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // ckbOnlyRecv
             // 
@@ -316,7 +332,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(816, 25);
+            this.button2.Location = new System.Drawing.Point(835, 25);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 43);
             this.button2.TabIndex = 10;
@@ -430,7 +446,7 @@
             // 
             this.checkBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(777, 87);
+            this.checkBox5.Location = new System.Drawing.Point(796, 87);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(59, 19);
             this.checkBox5.TabIndex = 11;
@@ -441,7 +457,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(816, 24);
+            this.button3.Location = new System.Drawing.Point(835, 24);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 51);
             this.button3.TabIndex = 12;
@@ -452,7 +468,7 @@
             // txtRepeatInteval
             // 
             this.txtRepeatInteval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRepeatInteval.Location = new System.Drawing.Point(832, 81);
+            this.txtRepeatInteval.Location = new System.Drawing.Point(851, 81);
             this.txtRepeatInteval.Name = "txtRepeatInteval";
             this.txtRepeatInteval.Size = new System.Drawing.Size(50, 25);
             this.txtRepeatInteval.TabIndex = 13;
@@ -463,7 +479,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(888, 88);
+            this.label8.Location = new System.Drawing.Point(907, 88);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(23, 15);
             this.label8.TabIndex = 14;
@@ -473,6 +489,8 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.txtRepeatTimes);
             this.groupBox3.Controls.Add(this.richTextBox1);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.button3);
@@ -480,9 +498,28 @@
             this.groupBox3.Controls.Add(this.checkBox5);
             this.groupBox3.Location = new System.Drawing.Point(12, 176);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(916, 131);
+            this.groupBox3.Size = new System.Drawing.Size(935, 151);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(906, 123);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(22, 15);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "次";
+            // 
+            // txtRepeatTimes
+            // 
+            this.txtRepeatTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRepeatTimes.Location = new System.Drawing.Point(851, 120);
+            this.txtRepeatTimes.Name = "txtRepeatTimes";
+            this.txtRepeatTimes.Size = new System.Drawing.Size(50, 25);
+            this.txtRepeatTimes.TabIndex = 16;
+            this.txtRepeatTimes.Text = "1000";
             // 
             // richTextBox1
             // 
@@ -491,7 +528,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(6, 20);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(765, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(784, 116);
             this.richTextBox1.TabIndex = 15;
             this.richTextBox1.Text = "";
             // 
@@ -501,9 +538,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.richTextBox2);
-            this.groupBox4.Location = new System.Drawing.Point(12, 314);
+            this.groupBox4.Location = new System.Drawing.Point(12, 333);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(916, 242);
+            this.groupBox4.Size = new System.Drawing.Size(935, 252);
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             // 
@@ -513,7 +550,7 @@
             this.richTextBox2.Location = new System.Drawing.Point(3, 21);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(910, 218);
+            this.richTextBox2.Size = new System.Drawing.Size(929, 228);
             this.richTextBox2.TabIndex = 0;
             this.richTextBox2.Text = "";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
@@ -525,54 +562,61 @@
             this.toolStripStatusLabel1,
             this.sendNum,
             this.toolStripStatusLabel2,
-            this.recvNum});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 559);
+            this.recvNum,
+            this.toolStripSplitButton1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 587);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(937, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(956, 26);
             this.statusStrip1.TabIndex = 17;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 20);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 21);
             this.toolStripStatusLabel1.Text = "已发送条数";
             // 
             // sendNum
             // 
             this.sendNum.Name = "sendNum";
-            this.sendNum.Size = new System.Drawing.Size(18, 20);
+            this.sendNum.Size = new System.Drawing.Size(18, 21);
             this.sendNum.Text = "0";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(84, 20);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(84, 21);
             this.toolStripStatusLabel2.Text = "已接受条数";
             // 
             // recvNum
             // 
             this.recvNum.Name = "recvNum";
-            this.recvNum.Size = new System.Drawing.Size(18, 20);
+            this.recvNum.Size = new System.Drawing.Size(18, 21);
             this.recvNum.Text = "0";
             // 
-            // linkLabel2
+            // toolStripSplitButton1
             // 
-            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(743, 26);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(67, 15);
-            this.linkLabel2.TabIndex = 12;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "清空计数";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.文件追捕ToolStripMenuItem});
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(39, 24);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // 文件追捕ToolStripMenuItem
+            // 
+            this.文件追捕ToolStripMenuItem.Name = "文件追捕ToolStripMenuItem";
+            this.文件追捕ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.文件追捕ToolStripMenuItem.Text = "文件追捕";
+            this.文件追捕ToolStripMenuItem.Click += new System.EventHandler(this.文件追捕ToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(937, 584);
+            this.ClientSize = new System.Drawing.Size(956, 613);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -648,6 +692,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel recvNum;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtRepeatTimes;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripMenuItem 文件追捕ToolStripMenuItem;
         //private System.Windows.Forms.Button button4;
     }
 }

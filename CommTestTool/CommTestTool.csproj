@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="ComCounter.cs" />
     <Compile Include="Common\CommonFucntion.cs" />
+    <Compile Include="Common\FileOprate.cs" />
     <Compile Include="Common\FormInit.cs" />
     <Compile Include="Common\Loghelper.cs" />
     <Compile Include="Common\SerialPortHelper.cs" />
