@@ -59,5 +59,15 @@ namespace CommTestTool.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap menu_128px_1187497_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("menu_128px_1187497_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

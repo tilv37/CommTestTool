@@ -373,12 +373,6 @@ namespace CommTestTool
 
         private void SendBytes(byte[] bytes)
         {
-            if (!initialFlag)
-            {
-                MessageBox.Show("端口未被打开，请先确保通信连接");
-                return;
-            }
-
             if (bytes.Count() != 0)
             {
                 if (_localSettings.NetType.Contains("Tcp"))
@@ -573,6 +567,10 @@ namespace CommTestTool
         {
             foreach (byte[] bytes in byteses)
             {
+                if (!initialFlag)
+                {
+                    return;
+                }
                 SendBytes(bytes);
                 Thread.Sleep(100);
             }
