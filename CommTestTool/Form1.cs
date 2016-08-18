@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using System.Timers;
@@ -234,7 +235,16 @@ namespace CommTestTool
                     }
                     else
                     {
-                        _udpClientManager.Start(CommonFucntion.FindNextAvailablePort());
+                        try
+                        {
+                            _udpClientManager.Start(CommonFucntion.FindNextAvailablePort());
+
+                        }
+                        catch (Exception ex)
+                        {
+                            
+                            throw ex;
+                        }
                         EnableSendButton();
                     }
 

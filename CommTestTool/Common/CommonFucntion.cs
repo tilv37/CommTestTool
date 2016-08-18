@@ -70,7 +70,7 @@ namespace CommTestTool.Common
                 IPEndPoint[] endPoints = ipGlobalProperties.GetActiveUdpListeners();
                 do
                 {
-                    if (isAvailabe)
+                    if (!isAvailabe)
                     {
                         port ++;
                         isAvailabe = true;
