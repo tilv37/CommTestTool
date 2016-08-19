@@ -64,10 +64,7 @@ namespace CommTestTool
                 }
                 else
                 {
-                    Console.WriteLine(Thread.CurrentThread.Name+"尝试访问变量");
-                    Monitor.Pulse(monitor);
                     TimerTotalDesc();
-                    Monitor.Enter(monitor);
                     Console.WriteLine(Thread.CurrentThread.Name + "完成访问变量");
                     return _timerTotal <= 0 ? true : false;
                 }

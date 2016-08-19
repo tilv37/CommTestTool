@@ -34,6 +34,8 @@ namespace CommTestTool
         //用来检查文件存在的委托
         public delegate void SendFileDebugDelegate(List<byte[]> byeList);
 
+        private object lockObj=new object();
+
         private TCPClientManager _tcpClientManager=null;
         private TCPServerManager _tcpServerManager = null;
         private UDPClientManager _udpClientManager = null;
@@ -528,7 +530,7 @@ namespace CommTestTool
         delegate void MyInvokeHandler();
         private void doTimer(object sender, ElapsedEventArgs e)
         {
-            if (ComCounter.isTimerNeedDone())
+            if (CheckTimeNeeded())
             {
                 this.Invoke(new MyInvokeHandler(() =>
                 {
@@ -538,6 +540,14 @@ namespace CommTestTool
                 }));
             }
             this.Invoke(new MyInvokeHandler(SendBytes));
+        }
+
+        private bool CheckTimeNeeded()
+        {
+            lock (lockObj)
+            {
+                return ComCounter.isTimerNeedDone();
+            }
         }
 
         private void txtRepeatInteval_TextChanged(object sender, EventArgs e)
