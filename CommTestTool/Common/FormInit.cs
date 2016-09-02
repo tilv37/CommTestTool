@@ -10,7 +10,7 @@ namespace CommTestTool.Common
     {
         public List<string> GetBaudRate()
         {          
-            return new string[] {"4800","9600","14400","19200"}.ToList();
+            return new string[] {"1200","2400","4800","9600","14400","19200","38400","57600","115200"}.ToList();
         }
 
         private List<string> GetSocketType()
