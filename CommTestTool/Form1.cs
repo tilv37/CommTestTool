@@ -433,7 +433,7 @@ namespace CommTestTool
             else if (color == Color.LimeGreen)
             {
                 sendNum.Text = ComCounter.SendNum().ToString();
-                //LogHelper.ShowInfo(nowDate + " Send:" + tempData + string.Format("({0} bytes)", bytes.Count()));
+                LogHelper.ShowInfo(nowDate + " Send:" + tempData + string.Format("({0} bytes)", bytes.Count()));
             }
 
             if (ckbNewLine.Checked)
